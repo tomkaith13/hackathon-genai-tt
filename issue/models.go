@@ -22,3 +22,10 @@ type VertexAIRequest struct {
 	Instances  []Instance `json:"instances"`
 	Parameters Params     `json:"parameters"`
 }
+
+type Prediction struct {
+	Content string `json:"content"`
+}
+type VertexAIResponse struct {
+	Predictions []Prediction `json:"predictions"`
+}

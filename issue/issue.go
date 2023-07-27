@@ -38,9 +38,12 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 	// TODO call the vertex ai model here!!
 	posturl := vertexAIUrlConstructor()
 	postBody := VertexAIRequest{}
+	contentBody := `given a user submitted issue or a suggestion, classify the issue as the following: Critical High Low Medium` +
+		`input: ` + issueRequest.Issue +
+		` output:`
 	postBody.Instances = []Instance{
 		{
-			Content: `given a user submitted issue or a suggestion, classify the issue as the following: Critical High Low Medium`,
+			Content: contentBody,
 		},
 	}
 	postBody.Parameters = Params{
@@ -88,13 +91,13 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//dump response
-	dump, err = httputil.DumpResponse(resp, true)
-	if err != nil {
-		log.Fatal(err)
-	}
+	// dump, err = httputil.DumpResponse(resp, true)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	fmt.Println(string(body))
-	fmt.Printf("\nVertexAI POST Resp: \n%q\n\n", dump)
+	fmt.Println("body from vertexAI" + string(body))
+	// fmt.Printf("\nVertexAI POST Resp: \n%q\n\n", dump)
 
 	//  Classification Sender
 	response := ClassificationResponse{}
