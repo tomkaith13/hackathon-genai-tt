@@ -11,6 +11,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"issue\": \"help help... nothing works!!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "localhost:8080/submit-issue",
 					"host": [
@@ -22,7 +31,53 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "sample req+resp",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"issue\": \"help help... nothing works!!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/submit-issue",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"submit-issue"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 27 Jul 2023 15:27:36 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"severity\":\"Critical\"}"
+				}
+			]
 		}
 	]
 }
