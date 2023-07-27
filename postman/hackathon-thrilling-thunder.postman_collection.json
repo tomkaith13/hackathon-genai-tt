@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"issue\": \"help help... nothing works!!\"\n}",
+					"raw": "{\n    \"issue\": \"My app is not starting\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -33,7 +33,7 @@
 			},
 			"response": [
 				{
-					"name": "sample req+resp",
+					"name": "critical example",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -76,6 +76,51 @@
 					],
 					"cookie": [],
 					"body": "{\"severity\":\"Critical\"}"
+				},
+				{
+					"name": "low example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"issue\": \"I really wish you folks had 24/7 chat support.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/submit-issue",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"submit-issue"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 27 Jul 2023 17:53:35 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"severity\":\"Low\"}"
 				}
 			]
 		}
