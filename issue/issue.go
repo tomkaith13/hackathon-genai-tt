@@ -45,6 +45,14 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 	Might you be able to provide a better insight into this as the member is concerned about submitting their claims.
 	Thank you!` +
 		` output: Low` +
+		`input: The app is running slowly after my update` +
+		` output: Low` +
+		`input: my prescriptions are no longer on the page` +
+		` output: Medium` +
+		`input: I can't see any info on my wallet` +
+		` output: Critical` +
+		`input: my date of hire is wrong` +
+		` output: High` +
 		`input: ` + issueRequest.Issue +
 		` output:`
 	postBody.Instances = []Instance{
