@@ -39,6 +39,12 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 	posturl := vertexAIUrlConstructor()
 	postBody := VertexAIRequest{}
 	contentBody := `given a user submitted issue or a suggestion, classify the issue as the following: Critical High Low Medium` +
+		`input: Hi Team!
+	Good day.
+	Asking for your assistance to determine why the member received their League Invitation Email at a later date than expected. The member got hired last June 12th 2023 but was only sent an invite July 20th.
+	Might you be able to provide a better insight into this as the member is concerned about submitting their claims.
+	Thank you!` +
+		` output: Low` +
 		`input: ` + issueRequest.Issue +
 		` output:`
 	postBody.Instances = []Instance{
