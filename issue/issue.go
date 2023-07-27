@@ -20,10 +20,8 @@ const (
 )
 
 func vertexAIUrlConstructor() string {
-	// "https://us-central1-aiplatform.googleapis.com/v1/projects/463895878287/locations/us-central1/endpoints/7547958208682262528:predict"
-
-	// return fmt.Sprintf("%s/locations/us-central1/endpoints/%s:predict", vertexAiDomainUrl, projectId, modelId)
-	return vertexAiDomainUrl + projectId + "/locations/us-central1/endpoints/" + modelId + ":predict"
+	// return vertexAiDomainUrl + projectId + "/locations/us-central1/endpoints/publishers/google/models/" + modelId + ":predict"
+	return "https://us-central1-aiplatform.googleapis.com/v1/projects/league-stage-datalake-play/locations/us-central1/publishers/google/models/text-bison@001:predict"
 }
 func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -59,7 +57,7 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("error:" + err.Error()))
 		return
 	}
-	fmt.Println("postUrl::", posturl)
+	fmt.Println("\n\npostUrl::", posturl)
 	fmt.Println("postBody::", string(postBodyJson))
 	vRequest, err := http.NewRequest("POST", posturl, bytes.NewBuffer(postBodyJson))
 	if err != nil {
@@ -67,6 +65,7 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("error:" + err.Error()))
 	}
 	vRequest.Header.Add("Authorization", bearer)
+	vRequest.Header.Add("Content-Type", "application/json")
 
 	// http dump request
 	dump, err := httputil.DumpRequest(vRequest, true)
