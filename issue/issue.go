@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	vertexAiDomainUrl string = "https://us-central1-aiplatform.googleapis.com/v1/projects"
-	projectId         string = "463895878287"
-	modelId           string = "7547958208682262528"
+	vertexAiDomainUrl string = "https://us-central1-aiplatform.googleapis.com/v1/projects/"
+	projectId         string = "league-stage-datalake-play"
+	modelId           string = "text-bison@001"
 
 	// Double check this works!!
 	BearerToken string = "ya29.a0AbVbY6O2_ma5JUdVMZ4INglb-3J0vvDZipkvTawbBu1lDj3e1S548TbMhyTWaaIeeHGOh0Yqgw66vmbdNRneun__SfRiRVjoJctSAQ1Y_H-NcRXJ9XBS35F8vgldDlyyI-6los7Yrb_oeezQiWMayRzChU-Ag8_5m_a32FEaCgYKAV0SARESFQFWKvPlDmiGC8GNsrQECUWk08nnJA0174"
@@ -42,10 +42,7 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 	postBody := VertexAIRequest{}
 	postBody.Instances = []Instance{
 		{
-			Content: `given a user submitted issue or a suggestion, classify the issue as the following: Critical High Low Medium
-
-			input: Some optional features are not working
-			output: Low`,
+			Content: `given a user submitted issue or a suggestion, classify the issue as the following: Critical High Low Medium`,
 		},
 	}
 	postBody.Parameters = Params{
@@ -63,6 +60,7 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Println("postUrl::", posturl)
+	fmt.Println("postBody::", string(postBodyJson))
 	vRequest, err := http.NewRequest("POST", posturl, bytes.NewBuffer(postBodyJson))
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
