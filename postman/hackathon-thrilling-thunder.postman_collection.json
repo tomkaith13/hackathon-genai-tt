@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "a41727cd-7697-4dc4-bbc9-b5b7a479bbf7",
+		"name": "hackathon-thrilling-thunder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13380006"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/submit-issue",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"submit-issue"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
