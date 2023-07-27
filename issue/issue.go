@@ -16,7 +16,7 @@ const (
 	modelId           string = "text-bison@001"
 
 	// Double check this works!!
-	BearerToken string = "ya29.a0AbVbY6O2_ma5JUdVMZ4INglb-3J0vvDZipkvTawbBu1lDj3e1S548TbMhyTWaaIeeHGOh0Yqgw66vmbdNRneun__SfRiRVjoJctSAQ1Y_H-NcRXJ9XBS35F8vgldDlyyI-6los7Yrb_oeezQiWMayRzChU-Ag8_5m_a32FEaCgYKAV0SARESFQFWKvPlDmiGC8GNsrQECUWk08nnJA0174"
+	BearerToken string = "ya29.a0AbVbY6McEVFfIqBJubc3IE71zbkqk4v1nBmitVD8OXoTMhsNJVXGkB5xxiomkoEZNHVkzcqEPHyKl7Fj2cKg_eXKHv0wIGlh58mh1p_fsT3lrhb4K9Xy8GYaAceNBFVKRuqdPLSCVt8i1pS4_lTpoo5s2Z0zo1a8nRU5j3kaCgYKAYQSARESFQFWKvPlJcmFmbmiU2v0nBmRTCumIQ0174"
 )
 
 func vertexAIUrlConstructor() string {
@@ -99,9 +99,14 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("body from vertexAI" + string(body))
 	// fmt.Printf("\nVertexAI POST Resp: \n%q\n\n", dump)
 
+	vAIResponse := VertexAIResponse{}
+	json.Unmarshal(body, &vAIResponse)
+
 	//  Classification Sender
-	response := ClassificationResponse{}
-	response.Severity = "Critical"
+	response := ClassificationResponse{
+		Severity: vAIResponse.Predictions[0].Content,
+	}
+	// response.Severity = "Critical"
 	b, err := json.Marshal(response)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
