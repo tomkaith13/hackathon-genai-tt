@@ -115,13 +115,20 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 
 	vAIResponse := VertexAIResponse{}
 	json.Unmarshal(body, &vAIResponse)
-
+	response := ClassificationResponse{}
 	//  Classification Sender
-	response := ClassificationResponse{
-		// This assumes that there is always one prediction.
-		// TODO: We may wanna clean this to pass an unknown severity to get human eyes on this.
-		Severity: vAIResponse.Predictions[0].Content,
+	if len(vAIResponse.Predictions) == 0 {
+		response.Severity = "Unknown"
+
+	} else {
+		response.Severity = vAIResponse.Predictions[0].Content
 	}
+
+	// response := ClassificationResponse{
+	// 	// This assumes that there is always one prediction.
+	// 	// TODO: We may wanna clean this to pass an unknown severity to get human eyes on this.
+	// 	Severity: vAIResponse.Predictions[0].Content,
+	// }
 	// response.Severity = "Critical"
 	b, err := json.Marshal(response)
 	if err != nil {
