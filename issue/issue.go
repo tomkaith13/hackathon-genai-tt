@@ -118,6 +118,7 @@ func SubmitIssueHandler(w http.ResponseWriter, r *http.Request) {
 	response := ClassificationResponse{}
 	//  Classification Sender
 	if len(vAIResponse.Predictions) == 0 {
+		// Unknown means we havent got a classification from VertexAI and we need a human in the loop.
 		response.Severity = "Unknown"
 
 	} else {
